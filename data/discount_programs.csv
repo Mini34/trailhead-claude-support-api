@@ -1,0 +1,4 @@
+program_code,name,percent_off,audience,verification_required,verification_valid_days,cooldown_days,exclude_final_sale,stackable_with_promos,stackable_with_free_shipping,minimum_subtotal,notes
+STUDENT15,Verified Student Discount,15,Currently enrolled college or university students,True,365,30,True,False,True,0.00,Valid on full-price merchandise; one use every 30 days
+EDUCATOR10,Educator Appreciation Discount,10,Current K-12 and post-secondary educators,True,365,30,True,False,True,0.00,Valid on full-price merchandise; one use every 30 days
+RESPONDER10,First Responder Discount,10,Verified EMTs paramedics firefighters and law enforcement,True,365,30,True,False,True,0.00,Valid on full-price merchandise; one use every 30 days

@@ -1,0 +1,21 @@
+product_id,warehouse,units_in_stock,reorder_level
+TSC-1001,"Denver, CO",20,20
+TSC-1002,"Denver, CO",94,20
+TSC-1003,"Denver, CO",56,20
+TSC-1004,"Denver, CO",70,20
+TSC-1005,"Denver, CO",90,20
+TSC-1006,"Denver, CO",54,20
+TSC-1007,"Denver, CO",71,20
+TSC-1008,"Denver, CO",1,20
+TSC-1009,"Denver, CO",14,20
+TSC-1010,"Denver, CO",9,20
+TSC-1011,"Denver, CO",120,20
+TSC-1012,"Denver, CO",113,20
+TSC-1013,"Denver, CO",88,20
+TSC-1014,"Denver, CO",115,20
+TSC-1015,"Denver, CO",19,20
+TSC-1016,"Denver, CO",69,20
+TSC-1017,"Denver, CO",4,20
+TSC-1018,"Denver, CO",106,20
+TSC-1019,"Denver, CO",47,20
+TSC-1020,"Denver, CO",74,20

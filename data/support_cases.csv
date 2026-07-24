@@ -1,0 +1,7 @@
+case_id,customer_id,order_id,category,priority,status,summary,resolution,created_at,resolved_at
+CASE-5001,C-1001,1031,discount,normal,resolved,Student discount was missing before checkout,Eligibility verified and 15 percent discount applied before shipment,2026-07-10T09:15:00-06:00,2026-07-10T09:22:00-06:00
+CASE-5002,C-1004,1034,shipping,high,open,Expedited shipment has missed its estimate and tracking has not moved,,2026-07-23T08:05:00-06:00,
+CASE-5003,C-1005,1035,delivery,high,open,Package is marked delivered but customer cannot locate it,,2026-07-23T10:40:00-06:00,
+CASE-5004,C-1006,1036,warranty,normal,pending_customer,Final-sale tent has a seam defect,Waiting for customer photos of the seam and product label,2026-07-21T14:10:00-06:00,
+CASE-5005,C-1018,1038,return,normal,resolved,Return requested after standard return window,Explained that the non-member 30-day window had ended,2026-07-22T11:20:00-06:00,2026-07-22T11:35:00-06:00
+CASE-5006,C-1012,1040,billing,urgent,escalated,Customer reports two pending card authorizations,Escalated to billing specialist; no refund promised,2026-07-23T15:30:00-06:00,2026-07-23T15:34:00-06:00

@@ -1,0 +1,3 @@
+order_id,adjustment_type,program_code,amount,description
+1031,discount,STUDENT15,25.35,15 percent verified student discount
+1039,discount,STUDENT15,32.85,15 percent verified student discount

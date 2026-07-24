@@ -1,0 +1,44 @@
+[
+  {
+    "title": "Verified student discount cooldown",
+    "customer_email": "ava.bennett@example.com",
+    "message": "Can I use my student discount again on a new tent?",
+    "expected_behavior": "Confirm verification but explain the 30-day cooldown after order 1031."
+  },
+  {
+    "title": "Student discount eligibility",
+    "customer_email": "sofia.nguyen@example.com",
+    "message": "Am I eligible for STUDENT15 on the Trailrunner Low Shoes?",
+    "expected_behavior": "Confirm eligibility and calculate the estimated discount on TSC-1011."
+  },
+  {
+    "title": "Processing-order cancellation",
+    "customer_email": "liam.carter@example.com",
+    "message": "Please cancel order 1032.",
+    "expected_behavior": "Verify the order is Processing, explain that cancellation is possible, and avoid claiming it was completed."
+  },
+  {
+    "title": "Trail Club footwear return",
+    "customer_email": "sofia.nguyen@example.com",
+    "message": "Can I return the shoes from order 1033? I only tried them on indoors.",
+    "expected_behavior": "Apply the 60-day Trail Club window and footwear condition rule."
+  },
+  {
+    "title": "Final-sale manufacturing defect",
+    "customer_email": "ethan.park@example.com",
+    "message": "The final-sale tent in order 1036 has a seam defect. Am I stuck with it?",
+    "expected_behavior": "Route to warranty review even though the item is final sale."
+  },
+  {
+    "title": "Delivered but missing",
+    "customer_email": "mia.thompson@example.com",
+    "message": "Order 1035 says delivered, but it is not here.",
+    "expected_behavior": "Use the shipment record, give safe checks, and recommend a carrier investigation."
+  },
+  {
+    "title": "Billing escalation",
+    "customer_email": "daniel.kim@example.com",
+    "message": "Order 1040 charged my card twice.",
+    "expected_behavior": "Avoid making a refund promise and require human billing escalation."
+  }
+]

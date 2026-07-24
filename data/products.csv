@@ -1,0 +1,21 @@
+product_id,name,category,price,weight_kg,return_window_days,warranty_months,is_final_sale
+TSC-1001,Summit 2P Backpacking Tent,Tents,289.00,2.1,30,24,False
+TSC-1002,Basecamp 4P Family Tent,Tents,349.00,4.8,30,24,False
+TSC-1003,Ridgeline 1P Ultralight Tent,Tents,259.00,1.2,0,24,True
+TSC-1004,Voyager 65L Backpack,Backpacks,219.00,1.9,30,24,False
+TSC-1005,Daybreak 30L Daypack,Backpacks,89.00,0.8,30,24,False
+TSC-1006,Alpine 45L Trekking Pack,Backpacks,179.00,1.5,30,24,False
+TSC-1007,Nightfall 20F Down Sleeping Bag,Sleeping Bags,199.00,1.1,30,12,False
+TSC-1008,Meadow 40F Synthetic Bag,Sleeping Bags,99.00,1.4,30,12,False
+TSC-1009,Frostline 0F Expedition Bag,Sleeping Bags,279.00,1.8,0,12,True
+TSC-1010,Traverse Mid Hiking Boots,Footwear,169.00,1.0,30,12,False
+TSC-1011,Trailrunner Low Shoes,Footwear,129.00,0.7,30,12,False
+TSC-1012,Summit GTX Mountaineering Boots,Footwear,329.00,1.6,30,12,False
+TSC-1013,Blaze Backpacking Stove,Stoves & Cookware,59.00,0.3,30,12,False
+TSC-1014,Campfire 2-Pot Cook Set,Stoves & Cookware,49.00,0.6,30,12,False
+TSC-1015,Kettle Pro Titanium Pot,Stoves & Cookware,45.00,0.2,30,12,False
+TSC-1016,Horizon Down Jacket,Apparel,189.00,0.5,30,12,False
+TSC-1017,Rainguard Shell Jacket,Apparel,159.00,0.4,30,12,False
+TSC-1018,Trail Merino Base Layer,Apparel,69.00,0.3,30,12,False
+TSC-1019,Pathfinder GPS Handheld,Navigation,249.00,0.2,30,12,False
+TSC-1020,Trailhead Compass & Map Set,Navigation,29.00,0.1,30,12,False

@@ -1,0 +1,10 @@
+customer_id,program_code,verification_status,verification_expires,last_used_date
+C-1001,STUDENT15,verified,2027-06-30,2026-07-10
+C-1002,STUDENT15,unverified,,
+C-1003,STUDENT15,verified,2027-05-31,
+C-1005,STUDENT15,expired,2026-06-30,
+C-1017,STUDENT15,verified,2027-07-01,2026-07-20
+C-1011,EDUCATOR10,verified,2027-01-31,
+C-1016,EDUCATOR10,pending,,
+C-1007,RESPONDER10,verified,2027-03-31,
+C-1014,RESPONDER10,expired,2026-05-31,

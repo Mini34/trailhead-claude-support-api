@@ -1,0 +1,21 @@
+customer_id,name,email,city,state,join_date,trail_club_member
+C-1001,Ava Bennett,ava.bennett@example.com,Denver,CO,2024-10-16,True
+C-1002,Liam Carter,liam.carter@example.com,Portland,OR,2023-04-25,False
+C-1003,Sofia Nguyen,sofia.nguyen@example.com,Austin,TX,2023-01-26,True
+C-1004,Noah Alvarez,noah.alvarez@example.com,Seattle,WA,2025-01-29,False
+C-1005,Mia Thompson,mia.thompson@example.com,Boulder,CO,2023-10-09,True
+C-1006,Ethan Park,ethan.park@example.com,Chicago,IL,2023-09-08,False
+C-1007,Isabella Rossi,isabella.rossi@example.com,Salt Lake City,UT,2023-08-17,True
+C-1008,Lucas Meyer,lucas.meyer@example.com,Minneapolis,MN,2023-05-23,False
+C-1009,Harper Sullivan,harper.sullivan@example.com,Bend,OR,2025-01-24,True
+C-1010,Mateo Garcia,mateo.garcia@example.com,Phoenix,AZ,2023-04-15,False
+C-1011,Chloe Foster,chloe.foster@example.com,Asheville,NC,2024-11-23,True
+C-1012,Daniel Kim,daniel.kim@example.com,San Diego,CA,2025-01-28,False
+C-1013,Grace Walker,grace.walker@example.com,Missoula,MT,2024-07-12,True
+C-1014,Owen Bennett,owen.bennett@example.com,Boise,ID,2023-03-31,False
+C-1015,Layla Hassan,layla.hassan@example.com,Flagstaff,AZ,2024-08-27,True
+C-1016,Henry Brooks,henry.brooks@example.com,Fort Collins,CO,2024-03-08,False
+C-1017,Zoe Mitchell,zoe.mitchell@example.com,Bozeman,MT,2023-02-02,True
+C-1018,Jack Rivera,jack.rivera@example.com,Reno,NV,2023-01-31,False
+C-1019,Nora Bailey,nora.bailey@example.com,Burlington,VT,2023-04-06,True
+C-1020,Leo Sanders,leo.sanders@example.com,Tacoma,WA,2023-08-12,False
