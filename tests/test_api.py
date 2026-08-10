@@ -1,6 +1,6 @@
+import unittest
 from datetime import date
 from pathlib import Path
-import unittest
 
 from fastapi.testclient import TestClient
 
@@ -8,7 +8,6 @@ from app.config import Settings
 from app.data_store import DataStore
 from app.knowledge import KnowledgeBase
 from app.main import create_app
-
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -29,9 +28,7 @@ class ApiTests(unittest.TestCase):
         )
         cls.store = DataStore(ROOT / "data", today=date(2026, 7, 23))
         cls.knowledge = KnowledgeBase(ROOT / "knowledge")
-        cls.client = TestClient(
-            create_app(cls.settings, cls.store, cls.knowledge)
-        )
+        cls.client = TestClient(create_app(cls.settings, cls.store, cls.knowledge))
 
     def test_health_explains_missing_claude_configuration(self):
         response = self.client.get("/health")
@@ -48,9 +45,7 @@ class ApiTests(unittest.TestCase):
         )
 
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(
-            response.json()["products"][0]["product_id"], "TSC-1011"
-        )
+        self.assertEqual(response.json()["products"][0]["product_id"], "TSC-1011")
 
     def test_demo_scenarios_endpoint(self):
         response = self.client.get("/v1/demo/scenarios")

@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import json
 from dataclasses import dataclass
-from datetime import date
 from typing import Any
 
 from .config import Settings
@@ -287,9 +286,7 @@ class SupportAgent:
         )
         return self._client
 
-    def _system_prompt(
-        self, initial_hits: list[dict], response_detail: str
-    ) -> str:
+    def _system_prompt(self, initial_hits: list[dict], response_detail: str) -> str:
         retrieved = [
             {
                 "source": hit["source"],
@@ -361,7 +358,9 @@ Potentially relevant approved knowledge retrieved by the application:
                 )
             }
         if name == "get_verified_order":
-            return self.store.lookup_order(arguments.get("order_id", ""), customer_email)
+            return self.store.lookup_order(
+                arguments.get("order_id", ""), customer_email
+            )
         if name == "get_my_recent_orders":
             return self.store.list_customer_orders(
                 customer_email, int(arguments.get("limit", 5))
@@ -563,7 +562,9 @@ Potentially relevant approved knowledge retrieved by the application:
                 "or ask for a support specialist."
             )
 
-        valid_sources = sorted(source for source in sources if source in self.knowledge.sources)
+        valid_sources = sorted(
+            source for source in sources if source in self.knowledge.sources
+        )
         return SupportReply(
             answer=final_text,
             sources=valid_sources,

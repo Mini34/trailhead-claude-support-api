@@ -4,7 +4,6 @@ import os
 from dataclasses import dataclass
 from pathlib import Path
 
-
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
 
@@ -45,7 +44,7 @@ class Settings:
     knowledge_dir: Path
 
     @classmethod
-    def from_env(cls) -> "Settings":
+    def from_env(cls) -> Settings:
         api_key = os.getenv("ANTHROPIC_API_KEY", "").strip() or None
         service_key = os.getenv("SUPPORT_API_KEY", "").strip() or None
         origins = tuple(

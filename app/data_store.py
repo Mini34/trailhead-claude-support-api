@@ -7,7 +7,6 @@ from datetime import date, timedelta
 from pathlib import Path
 from typing import Any
 
-
 TOKEN_RE = re.compile(r"[a-z0-9]+")
 
 
@@ -82,12 +81,8 @@ class DataStore:
         }
         self._products_by_id = {row["product_id"]: row for row in self.products}
         self._orders_by_id = {row["order_id"]: row for row in self.orders}
-        self._shipments_by_order = {
-            row["order_id"]: row for row in self.shipments
-        }
-        self._inventory_by_product = {
-            row["product_id"]: row for row in self.inventory
-        }
+        self._shipments_by_order = {row["order_id"]: row for row in self.shipments}
+        self._inventory_by_product = {row["product_id"]: row for row in self.inventory}
         self._programs_by_code = {
             row["program_code"].upper(): row for row in self.discount_programs
         }
@@ -118,9 +113,7 @@ class DataStore:
                 )
         for item in self.order_items:
             if item["order_id"] not in order_ids:
-                errors.append(
-                    f"order item references unknown order {item['order_id']}"
-                )
+                errors.append(f"order item references unknown order {item['order_id']}")
             if item["product_id"] not in product_ids:
                 errors.append(
                     f"order item references unknown product {item['product_id']}"
@@ -136,14 +129,10 @@ class DataStore:
                 )
         for row in self.order_adjustments:
             if row["order_id"] not in order_ids:
-                errors.append(
-                    f"adjustment references unknown order {row['order_id']}"
-                )
+                errors.append(f"adjustment references unknown order {row['order_id']}")
         for row in self.support_cases:
             if row["customer_id"] not in customer_ids:
-                errors.append(
-                    f"case {row['case_id']} references an unknown customer"
-                )
+                errors.append(f"case {row['case_id']} references an unknown customer")
             if row["order_id"] and row["order_id"] not in order_ids:
                 errors.append(
                     f"case {row['case_id']} references unknown order {row['order_id']}"
@@ -197,9 +186,7 @@ class DataStore:
                     "quantity": int(row["quantity"]),
                     "unit_price": float(row["unit_price"]),
                     "is_final_sale": _as_bool(product.get("is_final_sale")),
-                    "return_window_days": int(
-                        product.get("return_window_days") or 0
-                    ),
+                    "return_window_days": int(product.get("return_window_days") or 0),
                     "warranty_months": int(product.get("warranty_months") or 0),
                 }
             )
@@ -247,16 +234,16 @@ class DataStore:
             ),
         }
 
-    def list_customer_orders(
-        self, customer_email: str | None, limit: int = 5
-    ) -> dict:
+    def list_customer_orders(self, customer_email: str | None, limit: int = 5) -> dict:
         customer = self._verified_customer(customer_email)
         if not customer:
             return self._verification_error()
         rows = [
             row for row in self.orders if row["customer_id"] == customer["customer_id"]
         ]
-        rows.sort(key=lambda row: (row["order_date"], int(row["order_id"])), reverse=True)
+        rows.sort(
+            key=lambda row: (row["order_date"], int(row["order_id"])), reverse=True
+        )
         return {
             "status": "verified",
             "orders": [
@@ -589,15 +576,15 @@ class DataStore:
                 "status": (
                     "eligible_with_exclusions"
                     if eligible_items and excluded_items
-                    else "eligible" if eligible_items else "no_eligible_items"
+                    else "eligible"
+                    if eligible_items
+                    else "no_eligible_items"
                 ),
                 "eligible_items": eligible_items,
                 "excluded_items": excluded_items,
                 "eligible_subtotal": _money(eligible_subtotal),
                 "estimated_discount": discount,
-                "estimated_discounted_subtotal": _money(
-                    eligible_subtotal - discount
-                ),
+                "estimated_discounted_subtotal": _money(eligible_subtotal - discount),
             }
         )
         return result
@@ -687,7 +674,12 @@ class DataStore:
                 "message": "Ask whether the issue is a defect before closing the case.",
             }
 
-        if condition in {"used", "worn_outdoors", "missing_tags", "damaged_by_customer"}:
+        if condition in {
+            "used",
+            "worn_outdoors",
+            "missing_tags",
+            "damaged_by_customer",
+        }:
             return {
                 "status": "not_eligible",
                 "route": "return",

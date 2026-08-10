@@ -1,9 +1,8 @@
-from pathlib import Path
 import unittest
+from pathlib import Path
 
 from app.escalation import classify_escalation
 from app.knowledge import KnowledgeBase
-
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -20,21 +19,14 @@ class KnowledgeAndEscalationTests(unittest.TestCase):
 
         self.assertTrue(hits)
         self.assertEqual(hits[0]["source"], "discount_policy.md")
-        self.assertEqual(
-            hits[0]["authority"], "authoritative_policy_or_playbook"
-        )
+        self.assertEqual(hits[0]["authority"], "authoritative_policy_or_playbook")
 
     def test_natural_delivery_question_retrieves_shipping_knowledge(self):
-        hits = self.knowledge.search(
-            "How long until my package arrives?", top_k=5
-        )
+        hits = self.knowledge.search("How long until my package arrives?", top_k=5)
 
         self.assertTrue(hits)
         self.assertTrue(
-            any(
-                hit["source"] in {"shipping_policy.md", "faq.md"}
-                for hit in hits[:3]
-            )
+            any(hit["source"] in {"shipping_policy.md", "faq.md"} for hit in hits[:3])
         )
 
     def test_safety_escalates_urgently(self):

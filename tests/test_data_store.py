@@ -1,9 +1,8 @@
+import unittest
 from datetime import date
 from pathlib import Path
-import unittest
 
 from app.data_store import DataStore
-
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -23,9 +22,7 @@ class DataStoreTests(unittest.TestCase):
         self.assertNotIn("order", denied)
 
     def test_delivery_estimate_explains_timing_and_status(self):
-        result = self.store.get_delivery_estimate(
-            1032, "liam.carter@example.com"
-        )
+        result = self.store.get_delivery_estimate(1032, "liam.carter@example.com")
 
         self.assertEqual(result["status"], "verified")
         self.assertEqual(result["shipment_status"], "Processing")

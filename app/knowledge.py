@@ -4,7 +4,6 @@ import re
 from dataclasses import dataclass
 from pathlib import Path
 
-
 WORD_RE = re.compile(r"[a-z0-9]+")
 HEADING_RE = re.compile(r"^(#{1,4})\s+(.+?)\s*$")
 STOP_WORDS = {

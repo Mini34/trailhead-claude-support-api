@@ -1,5 +1,9 @@
 # Trailhead Customer Support API
 
+[![CI](https://github.com/Mini34/trailhead-claude-support-api/actions/workflows/ci.yml/badge.svg)](https://github.com/Mini34/trailhead-claude-support-api/actions/workflows/ci.yml)
+![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white)
+[![BSD 3-Clause](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](LICENSE)
+
 A grounded customer-support bot for the fictional Trailhead Supply Co. It runs on your
 Anthropic API key, uses Claude for conversation and tool selection, and keeps order
 authorization, discount math, return deadlines, and warranty routing in deterministic
@@ -8,6 +12,35 @@ Python code.
 The sample business includes 20 products, 20 customers, 40 orders, recent shipments,
 inventory, support cases, three verified-affiliation discount programs, and 12
 policy/playbook documents.
+
+## Engineering highlights
+
+- **Grounded responses:** Claude can search a controlled policy library and returns the
+  source filenames used in each answer.
+- **Deterministic business rules:** order ownership, discounts, return eligibility, and
+  escalation decisions stay in tested Python code rather than model-generated logic.
+- **Safe demo boundary:** the service is read-only and clearly distinguishes a request
+  from a completed cancellation, refund, or investigation.
+- **Observable API:** responses expose request IDs, tool usage, citations, escalation
+  details, model information, and token counts.
+- **Automated quality checks:** the test suite and Ruff run on every push and pull
+  request across supported Python versions.
+
+## Architecture
+
+```mermaid
+flowchart LR
+    Client[API client] --> FastAPI[FastAPI service]
+    FastAPI --> Agent[Support agent]
+    Agent <--> Claude[Claude API]
+    Agent --> Tools[Approved business tools]
+    Tools --> Data[(CSV demo data)]
+    Agent --> Knowledge[Policy retrieval]
+    Knowledge --> Docs[(Markdown knowledge base)]
+```
+
+The model handles conversation and tool selection. The application owns authorization,
+business calculations, escalation rules, and the final structured response contract.
 
 ## What it handles
 
@@ -85,6 +118,14 @@ Example response shape:
 }
 ```
 
+## API surface
+
+| Endpoint | Purpose |
+| --- | --- |
+| `GET /health` | Report service health and whether Claude is configured |
+| `GET /v1/demo/scenarios` | Return ready-to-run fictional support cases |
+| `POST /v1/support/chat` | Answer a grounded customer-support request |
+
 ## Demo scenarios
 
 `GET /v1/demo/scenarios` returns ready-to-run cases. Useful examples:
@@ -107,6 +148,7 @@ exact timing or amounts, next steps, and relevant limitations.
 
 ```powershell
 python -m pytest
+ruff check .
 ```
 
 Tests mock Claude and do not consume API credits.
