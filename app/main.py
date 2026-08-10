@@ -5,7 +5,6 @@ import json
 import logging
 import re
 import uuid
-from pathlib import Path
 from typing import Annotated, Literal
 
 try:
@@ -25,7 +24,6 @@ from .agent import SupportAgent, SupportAgentError
 from .config import Settings
 from .data_store import DataStore
 from .knowledge import KnowledgeBase
-
 
 logger = logging.getLogger("trailhead_support")
 EMAIL_PATTERN = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")

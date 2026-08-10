@@ -1,14 +1,13 @@
+import copy
+import unittest
 from datetime import date
 from pathlib import Path
 from types import SimpleNamespace
-import copy
-import unittest
 
-from app.agent import SupportAgent, TOOLS
+from app.agent import TOOLS, SupportAgent
 from app.config import Settings
 from app.data_store import DataStore
 from app.knowledge import KnowledgeBase
-
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -88,12 +87,8 @@ class AgentTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(reply.usage["input_tokens"], 220)
         self.assertEqual(reply.usage["output_tokens"], 50)
         second_call_messages = fake_messages.calls[1]["messages"]
-        self.assertEqual(
-            second_call_messages[-1]["content"][0]["type"], "tool_result"
-        )
-        self.assertIn(
-            "exchange_and_cancellation_policy.md", reply.sources
-        )
+        self.assertEqual(second_call_messages[-1]["content"][0]["type"], "tool_result")
+        self.assertIn("exchange_and_cancellation_policy.md", reply.sources)
 
 
 if __name__ == "__main__":

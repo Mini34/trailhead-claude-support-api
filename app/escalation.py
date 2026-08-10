@@ -2,7 +2,6 @@ from __future__ import annotations
 
 from typing import Any
 
-
 RULES = (
     (
         "safety",
@@ -96,7 +95,10 @@ def classify_escalation(
                 "reason": "Warranty outcome requires human review.",
             }
         for case in result.get("cases", []):
-            if case.get("priority") in {"urgent", "high"} and case.get("status") != "resolved":
+            if (
+                case.get("priority") in {"urgent", "high"}
+                and case.get("status") != "resolved"
+            ):
                 return {
                     "required": True,
                     "category": case.get("category", "support"),
