@@ -15,8 +15,8 @@ policy/playbook documents.
 
 ## Engineering highlights
 
-- **Grounded responses:** Claude can search a controlled policy library and returns the
-  source filenames used in each answer.
+- **Grounded responses:** Claude can search a controlled policy library, while the API
+  reports only source filenames cited in the answer or used by deterministic tools.
 - **Deterministic business rules:** order ownership, discounts, return eligibility, and
   escalation decisions stay in tested Python code rather than model-generated logic.
 - **Safe demo boundary:** the service is read-only and clearly distinguishes a request
