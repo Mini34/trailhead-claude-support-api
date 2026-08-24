@@ -45,6 +45,19 @@ class FakeMessages:
         )
 
 
+class DirectMessages:
+    async def create(self, **kwargs):
+        return SimpleNamespace(
+            content=[
+                {
+                    "type": "text",
+                    "text": "Student discounts require verification.",
+                }
+            ],
+            usage=SimpleNamespace(input_tokens=40, output_tokens=8),
+        )
+
+
 class AgentTests(unittest.IsolatedAsyncioTestCase):
     def test_strict_tool_schemas_use_supported_keywords(self):
         unsupported = {"minimum", "maximum", "minItems", "maxItems"}
@@ -89,6 +102,31 @@ class AgentTests(unittest.IsolatedAsyncioTestCase):
         second_call_messages = fake_messages.calls[1]["messages"]
         self.assertEqual(second_call_messages[-1]["content"][0]["type"], "tool_result")
         self.assertIn("exchange_and_cancellation_policy.md", reply.sources)
+
+    async def test_uncited_initial_retrieval_is_not_reported_as_a_source(self):
+        settings = Settings(
+            anthropic_api_key=None,
+            claude_model="test-model",
+            max_tokens=500,
+            max_tool_rounds=3,
+            request_timeout_seconds=10.0,
+            support_api_key=None,
+            cors_origins=(),
+            data_dir=ROOT / "data",
+            knowledge_dir=ROOT / "knowledge",
+        )
+        store = DataStore(ROOT / "data", today=date(2026, 7, 23))
+        knowledge = KnowledgeBase(ROOT / "knowledge")
+        agent = SupportAgent(
+            settings,
+            store,
+            knowledge,
+            client=SimpleNamespace(messages=DirectMessages()),
+        )
+
+        reply = await agent.respond("Can I use a student discount?")
+
+        self.assertEqual(reply.sources, [])
 
 
 if __name__ == "__main__":

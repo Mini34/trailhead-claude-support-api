@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 from dataclasses import dataclass
 from typing import Any
 
@@ -8,6 +9,8 @@ from .config import Settings
 from .data_store import DataStore
 from .escalation import classify_escalation
 from .knowledge import KnowledgeBase
+
+SOURCE_CITATION_RE = re.compile(r"\[Source:\s*([A-Za-z0-9_.-]+\.md)\]", re.IGNORECASE)
 
 
 @dataclass(frozen=True)
@@ -251,6 +254,15 @@ def _block_to_dict(block: Any) -> dict:
     }
 
 
+def _cited_sources(text: str, available_sources: set[str] | frozenset[str]) -> set[str]:
+    canonical = {source.casefold(): source for source in available_sources}
+    return {
+        canonical[match.group(1).casefold()]
+        for match in SOURCE_CITATION_RE.finditer(text)
+        if match.group(1).casefold() in canonical
+    }
+
+
 class SupportAgent:
     def __init__(
         self,
@@ -423,7 +435,7 @@ Potentially relevant approved knowledge retrieved by the application:
         if response_detail not in {"concise", "standard", "comprehensive"}:
             response_detail = "comprehensive"
         initial_hits = self.knowledge.search(message, top_k=4)
-        sources = {hit["source"] for hit in initial_hits}
+        sources: set[str] = set()
         messages: list[dict[str, Any]] = []
         for item in (history or [])[-10:]:
             if item.get("role") in {"user", "assistant"} and item.get("content"):
@@ -561,6 +573,8 @@ Potentially relevant approved knowledge retrieved by the application:
                 "I couldn't produce a grounded answer. Please rephrase the question "
                 "or ask for a support specialist."
             )
+
+        sources.update(_cited_sources(final_text, self.knowledge.sources))
 
         valid_sources = sorted(
             source for source in sources if source in self.knowledge.sources
